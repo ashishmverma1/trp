@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRatingTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRatingTable extends Migration
      */
     public function up()
     {
-        Schema::create('rating', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username');
             $table->integer('post_id')->unsigned();
@@ -28,6 +28,6 @@ class CreateRatingTable extends Migration
      */
     public function down()
     {
-        Schema::drop('rating');
+        Schema::drop('ratings');
     }
 }
