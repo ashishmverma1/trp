@@ -16,10 +16,15 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->longText('body');
-            $table->string('author');
+            $table->integer('user_id')->unsigned();
             $table->integer('rating');
             $table->integer('view_count');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 
