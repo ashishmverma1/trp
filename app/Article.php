@@ -12,4 +12,10 @@ class Article extends Model
     'body'
   ];
 
+
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
+
 }
