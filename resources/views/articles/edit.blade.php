@@ -8,7 +8,7 @@
 
   <h1>Updating: {{ $article->title }}</h1>
 
-  <form method="POST" accept-charset="UTF-8" action="/trp/public/articles/{{ $article->id }}">
+  <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="_method" value="PATCH">
     <input type="text" name="title" value="{{ $article->title }}">

@@ -12,14 +12,14 @@
 
     <article>
       <h3>
-        <a href="/trp/public/articles/{{ $article->id }}">{{ $article->title }}</a>
+        <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
       </h3>
 
       <p>
         {{ $article->body }}
       </p>
     </article>
-    
+
     <hr>
 
   @endforeach

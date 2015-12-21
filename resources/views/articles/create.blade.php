@@ -6,7 +6,7 @@
 
 @section('content')
 
-  <form method="POST" accept-charset="UTF-8" action="/trp/public/articles">
+  <form method="POST" accept-charset="UTF-8" action="/articles">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="text" name="title" value="{{ old('title') }}">
     <input type="textarea" name="body" value="{{ old('body') }}">
