@@ -15,11 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::controllers([
+  'auth' => 'Auth\AuthController',
+  'password' => 'Auth\PasswordController'
+]);
+
 // Route::get('articles', 'ArticlesController@index');
 // Route::get('articles/create', 'ArticlesController@create');
 // Route::get('articles/{id}', 'ArticlesController@show');
 // Route::get('articles/{id}/edit', 'ArticlesController@edit');
-//
 // Route::post('articles', 'ArticlesController@store');
 
 Route:resource('articles', 'ArticlesController');
