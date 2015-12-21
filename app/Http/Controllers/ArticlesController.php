@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,6 +12,13 @@ use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
 {
+  // check authentication for create/edit pages using middleware
+  public function __construct()
+  {
+    $this->middleware('auth', ['except' => ['index', 'show']]);
+  }
+
+
   // for all articles home page
   public function index()
   {
@@ -42,10 +50,11 @@ class ArticlesController extends Controller
   public function store(Request $input)
   {
     $this->validate($input, ['title' => 'required', 'body' => 'required']);
-    $newArticle = new Article;
-    $newArticle->title = $input->input('title');
-    $newArticle->body = $input->input('body');
-    $newArticle->save();
+    $newArticle = new Article($input->all());
+    // $newArticle->title = $input->input('title');
+    // $newArticle->body = $input->input('body');
+    // $newArticle->save();
+    Auth::user()->articles()->save($newArticle);
     return redirect('articles/'.$newArticle->id);
   }
 

@@ -22,12 +22,14 @@
     </p>
   @endif
 
-  <a href="/articles/{{ $article->id }}/edit"><button>Edit</button></a>
+  @if(Auth::check())
+    <a href="/articles/{{ $article->id }}/edit"><button>Edit</button></a>
 
-  <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="_method" value="DELETE">
-    <button type="submit">Delete</button>
-  </form>
+    <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit">Delete</button>
+    </form>
+  @endif
 
 @stop

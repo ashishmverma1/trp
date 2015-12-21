@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', ['middleware' => 'guest', function () {
     return view('welcome');
-});
+}]);
 
 Route::controllers([
   'auth' => 'Auth\AuthController',
