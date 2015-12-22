@@ -16,6 +16,14 @@
     <h2 style="text-align:center;">--Header--</h2>
   </div>
 
+  <!-- show flash messages if any -->
+  @if (Session::has('flash_message'))
+    <div>
+      {{ Session::get('flash_message') }}
+    </div>
+  @endif
+  <!-- flash messages end -->
+
   <div class="content">
     @yield('content')
   </div>

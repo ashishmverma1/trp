@@ -22,8 +22,8 @@ class ArticlesController extends Controller
   // for all articles home page
   public function index()
   {
-    $articles = Article::all();
-    //$articles = Article::latest()->get();
+    //$articles = Article::all();
+    $articles = Article::latest()->get();
     return view('articles.index', compact('articles'));
   }
 
@@ -35,6 +35,13 @@ class ArticlesController extends Controller
     if(is_null($article)) {
       abort(404);
     }
+
+    // update view count
+    $article->timestamps = false;
+    $article->view_count = $article->view_count + 1;
+    $article->save();
+    $article->timestamps = true;
+
     return view('articles.show', compact('article'));
   }
 
@@ -54,7 +61,10 @@ class ArticlesController extends Controller
     // $newArticle->title = $input->input('title');
     // $newArticle->body = $input->input('body');
     // $newArticle->save();
+
     Auth::user()->articles()->save($newArticle);
+    session()->flash('flash_message', 'Article created successfully!');
+
     return redirect('articles/'.$newArticle->id);
   }
 
@@ -63,12 +73,14 @@ class ArticlesController extends Controller
   public function edit($articleID)
   {
     $article = Article::find($articleID);
+
     if(is_null($article)) {
       abort(404);
     }
     if($article->user_id != Auth::user()->id){
       abort(401);
     }
+
     return view('articles.edit', compact('article'));
   }
 
@@ -84,6 +96,7 @@ class ArticlesController extends Controller
     }
 
     $article->update($input->all());
+    session()->flash('flash_message', 'Article updated successfully!');
 
     return redirect('articles/'.$articleID);
   }
@@ -93,13 +106,17 @@ class ArticlesController extends Controller
   public function destroy($articleID)
   {
     $article = Article::find($articleID);
+
     if(is_null($article)) {
       abort(404);
     }
     if($article->user_id != Auth::user()->id){
       abort(401);
     }
+
     $article->delete();
+    session()->flash('flash_message', 'Article deleted successfully!');
+
     return redirect('articles');
   }
 }
