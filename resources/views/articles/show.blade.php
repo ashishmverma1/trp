@@ -22,7 +22,7 @@
     </p>
   @endif
 
-  @if(Auth::check())
+  @if (Auth::check() and $article->user_id == Auth::user()->id)
     <a href="/articles/{{ $article->id }}/edit"><button>Edit</button></a>
 
     <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}">

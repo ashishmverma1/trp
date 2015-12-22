@@ -66,6 +66,9 @@ class ArticlesController extends Controller
     if(is_null($article)) {
       abort(404);
     }
+    if($article->user_id != Auth::user()->id){
+      abort(401);
+    }
     return view('articles.edit', compact('article'));
   }
 
@@ -92,6 +95,9 @@ class ArticlesController extends Controller
     $article = Article::find($articleID);
     if(is_null($article)) {
       abort(404);
+    }
+    if($article->user_id != Auth::user()->id){
+      abort(401);
     }
     $article->delete();
     return redirect('articles');
