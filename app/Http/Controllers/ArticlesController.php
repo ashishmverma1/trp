@@ -12,111 +12,141 @@ use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
 {
-  // check authentication for create/edit pages using middleware
-  public function __construct()
-  {
-    $this->middleware('auth', ['except' => ['index', 'show']]);
-  }
-
-
-  // for all articles home page
-  public function index()
-  {
-    //$articles = Article::all();
-    $articles = Article::latest()->get();
-    return view('articles.index', compact('articles'));
-  }
-
-
-  // to show a particular article
-  public function show($articleID)
-  {
-    $article = Article::find($articleID);
-    if(is_null($article)) {
-      abort(404);
+    // check authentication for create/edit pages using middleware
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-    // update view count
-    $article->timestamps = false;
-    $article->view_count = $article->view_count + 1;
-    $article->save();
-    $article->timestamps = true;
 
-    return view('articles.show', compact('article'));
-  }
-
-
-  // to show create article page
-  public function create()
-  {
-    return view('articles.create');
-  }
-
-
-  // to create and store new  article
-  public function store(Request $input)
-  {
-    $this->validate($input, ['title' => 'required', 'body' => 'required']);
-    $newArticle = new Article($input->all());
-    // $newArticle->title = $input->input('title');
-    // $newArticle->body = $input->input('body');
-    // $newArticle->save();
-
-    Auth::user()->articles()->save($newArticle);
-    session()->flash('flash_message', 'Article created successfully!');
-
-    return redirect('articles/'.$newArticle->id);
-  }
-
-
-  // to verify and show edit article page
-  public function edit($articleID)
-  {
-    $article = Article::find($articleID);
-
-    if(is_null($article)) {
-      abort(404);
-    }
-    if($article->user_id != Auth::user()->id){
-      abort(401);
+    /**
+     * Display all articles home page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $articles = Article::latest()->get();
+        return view('articles.index', compact('articles'));
     }
 
-    return view('articles.edit', compact('article'));
-  }
 
+    /**
+     * to show a particular article
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($articleID)
+    {
+        $article = Article::find($articleID);
+        if(is_null($article)) {
+            abort(404);
+        }
 
-  // to update editted  article in DB
-  public function update($articleID, Request $input)
-  {
-    $this->validate($input, ['title' => 'required', 'body' => 'required']);
+        // update view count
+        $article->timestamps = false;
+        $article->view_count = $article->view_count + 1;
+        $article->save();
+        $article->timestamps = true;
 
-    $article = Article::find($articleID);
-    if(is_null($article)) {
-      abort(404);
+        return view('articles.show', compact('article'));
     }
 
-    $article->update($input->all());
-    session()->flash('flash_message', 'Article updated successfully!');
 
-    return redirect('articles/'.$articleID);
-  }
-
-
-  // to delete an article
-  public function destroy($articleID)
-  {
-    $article = Article::find($articleID);
-
-    if(is_null($article)) {
-      abort(404);
-    }
-    if($article->user_id != Auth::user()->id){
-      abort(401);
+    /**
+     * to show create article page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('articles.create');
     }
 
-    $article->delete();
-    session()->flash('flash_message', 'Article deleted successfully!');
 
-    return redirect('articles');
-  }
+    /**
+     * to create and store new  article
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $input)
+    {
+        $this->validate($input, ['title' => 'required', 'body' => 'required']);
+        $newArticle = new Article($input->all());
+
+        Auth::user()->articles()->save($newArticle);
+        session()->flash('flash_message', 'Article created successfully!');
+
+        return redirect('articles/'.$newArticle->id);
+    }
+
+
+    /**
+     * to verify and show edit article page
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($articleID)
+    {
+        $article = Article::find($articleID);
+
+        if(is_null($article)) {
+            abort(404);
+        }
+        if($article->user_id != Auth::user()->id){
+            abort(401);
+        }
+
+        return view('articles.edit', compact('article'));
+    }
+
+
+    /**
+     * to update editted  article in DB
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($articleID, Request $input)
+    {
+        $this->validate($input, ['title' => 'required', 'body' => 'required']);
+
+        $article = Article::find($articleID);
+        if(is_null($article)) {
+            abort(404);
+        }
+
+        $article->update($input->all());
+        session()->flash('flash_message', 'Article updated successfully!');
+
+        return redirect('articles/'.$articleID);
+    }
+
+
+    /**
+     * to delete an article
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($articleID)
+    {
+        $article = Article::find($articleID);
+
+        if(is_null($article)) {
+            abort(404);
+        }
+        if($article->user_id != Auth::user()->id){
+            abort(401);
+        }
+
+        $article->delete();
+        session()->flash('flash_message', 'Article deleted successfully!');
+
+        return redirect('articles');
+    }
 }
