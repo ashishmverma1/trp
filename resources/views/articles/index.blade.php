@@ -1,27 +1,27 @@
 @extends('app')
 
 @section('title')
-  Articles
+    Articles
 @stop
 
 @section('content')
 
-  <h1>Articles</h1>
+    <h1>Articles</h1>
 
-  @foreach ($articles as $article)
+    @foreach ($articles as $article)
 
-    <article>
-      <h3>
-        <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
-      </h3>
+        <article>
+            <h3>
+                <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
+            </h3>
 
-      <p>
-        {{ $article->body }}
-      </p>
-    </article>
+            <p>
+                {{ $article->body }}
+            </p>
+        </article>
 
-    <hr>
+        <hr>
 
-  @endforeach
+    @endforeach
 
 @stop
