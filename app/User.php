@@ -40,6 +40,13 @@ class User extends Model implements AuthenticatableContract,
 
     public function articles()
     {
-      return $this->hasMany('App\Article');
+        return $this->hasMany('App\Article');
     }
+
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
 }

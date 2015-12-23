@@ -27,3 +27,6 @@ Route::controllers([
 // Route::post('articles', 'ArticlesController@store');
 
 Route:resource('articles', 'ArticlesController');
+
+Route::post('articles/{id}', 'CommentsController@store');
+Route::delete('articles/deletecomment/{id}', 'CommentsController@destroy');
