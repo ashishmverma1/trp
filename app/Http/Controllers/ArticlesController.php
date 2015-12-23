@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Article;
+use App\Vote;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -49,6 +50,16 @@ class ArticlesController extends Controller
         $article->view_count = $article->view_count + 1;
         $article->save();
         $article->timestamps = true;
+
+        // set rating attributes
+        $article->upvotes = $this->getUpvotes($articleID);
+        $article->downvotes = $this->getDownvotes($articleID);
+        if(Auth::check()) {
+            $article->user_has_voted = $this->userHasVoted($articleID);
+            if($this->userHasVoted($articleID)) {
+                $article->user_vote_value = $this->getUserVoteValue($articleID);
+            }
+        }
 
         return view('articles.show', compact('article'));
     }
@@ -148,5 +159,90 @@ class ArticlesController extends Controller
         session()->flash('flash_message', 'Article deleted successfully!');
 
         return redirect('articles');
+    }
+
+
+    /************ Vote Stuff ****************/
+
+    public function getUpvotes($article_id)
+    {
+        return (
+            Article::find($article_id)
+                    ->votes()
+                    ->where('vote_value', 1)
+                    ->count()
+        );
+    }
+
+
+    public function getDownvotes($article_id)
+    {
+        return (
+            Article::find($article_id)
+                    ->votes()
+                    ->where('vote_value', -1)
+                    ->count()
+        );
+    }
+
+
+    public function userHasVoted($article_id)
+    {
+        if( Auth::user()->votes()->where('article_id', $article_id)->count() == 0 ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    public function getUserVoteValue($article_id)
+    {
+        return (
+            Auth::user()
+                ->votes()
+                ->where('article_id', $article_id)
+                ->get()->first()
+                ->vote_value
+        );
+    }
+
+
+    /**
+     * Handles vote AJAX requests and updates DB accordingly
+     *
+     * @param  \Illuminate\Http\Request  $input
+     * @return \Illuminate\Http\Response
+     */
+    public function storeUpvote(Request $input)
+    {
+        $article_id = (int)$input->article_id;
+        $vote_value = (int)$input->vote_value;
+
+        $response_vote_value = $vote_value;
+
+        if($this->userHasVoted($article_id)) { // user has already voted on this article
+            $vote = Vote::all()->where('user_id', Auth::user()->id)->where('article_id', $article_id)->first();
+            if($vote->vote_value == $vote_value) { // if new vote is same as previous, remove it
+                $vote->delete();
+                $response_vote_value = 0;
+            } else { // else update previous vote value to new one
+                $vote->vote_value = $vote_value;
+                $vote->save();
+            }
+        } else { // else create a new vote and insert into DB
+            $vote = new Vote;
+            $vote->user_id = Auth::user()->id;
+            $vote->article_id = $article_id;
+            $vote->vote_value = $vote_value;
+            $vote->save();
+        }
+
+        $responseData = [];
+        $responseData['vote_value'] = $response_vote_value;
+        $responseData['upvotes'] = $this->getUpvotes($article_id);
+        $responseData['downvotes'] = $this->getDownvotes($article_id);
+
+        return response($responseData);
     }
 }

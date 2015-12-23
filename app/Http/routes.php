@@ -11,22 +11,23 @@
 |
 */
 
+// for homepage
 Route::get('/', ['middleware' => 'guest', function () {
     return view('welcome');
 }]);
 
+// for authentication
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'
 ]);
 
-// Route::get('articles', 'ArticlesController@index');
-// Route::get('articles/create', 'ArticlesController@create');
-// Route::get('articles/{id}', 'ArticlesController@show');
-// Route::get('articles/{id}/edit', 'ArticlesController@edit');
-// Route::post('articles', 'ArticlesController@store');
-
+// for articles
 Route:resource('articles', 'ArticlesController');
 
+// for comments
 Route::post('articles/{id}', 'CommentsController@store');
 Route::delete('articles/deletecomment/{id}', 'CommentsController@destroy');
+
+// for votes
+Route::post('articles/{id}/vote', 'ArticlesController@storeUpvote');

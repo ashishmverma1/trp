@@ -6,6 +6,7 @@
 
 @section('content')
 
+    <!-- Show  article stuff -->
     <h1>{{ $article->title }}</h1>
 
     <p>{{ $article->body }}</p>
@@ -19,7 +20,10 @@
               Updated on: {{ $article->updated_at->toFormattedDateString() }} ({{ $article->updated_at->diffForHumans() }})
         </p>
     @endif
+    <!-- article stuff ends -->
 
+
+    <!-- show edit and delete buttons to auth user -->
     @if (Auth::check() and $article->user_id == Auth::user()->id)
         <a href="/articles/{{ $article->id }}/edit"><button>Edit</button></a>
 
@@ -29,7 +33,60 @@
             <button type="submit">Delete</button>
         </form>
     @endif
+    <!-- edit and delete buttons end -->
 
+
+    <!-- show rating buttons -->
+    <p id="rating-counter">
+        Rating: {{ $article->upvotes - $article->downvotes }}
+    </p>
+    @if (Auth::check())
+            <button id="upvote-button" class="vote-button" data-vote-type="upvote">
+                Upvote ({{ $article->upvotes }})
+            </button>
+            <button id="downvote-button" class="vote-button" data-vote-type="downvote">
+                Downvote ({{ $article->downvotes }})
+            </button>
+    @endif
+    <!-- rating buttons end -->
+
+
+    <script>
+        jQuery( document ).ready( function() {
+            $('.vote-button').click(function(e){
+                e.preventDefault();
+
+                var $postData = {};
+                $postData._token = '{{ csrf_token() }}';
+                $postData.vote_value = ($(this).data('vote-type') == 'upvote') ? 1 : -1;
+                $postData.article_id = {{ $article->id }};
+
+                $.ajax({
+                    type: 'POST',
+                    url : '/articles/{{ $article->id }}/vote',
+                    data : $postData,
+                    cache: false,
+                    success : function(data){
+                        $('#rating-counter').html('Rating: ' + (data['upvotes'] - data['downvotes']));
+                        $('#upvote-button').html('Upvote (' + data['upvotes'] + ')');
+                        $('#downvote-button').html('Downvote (' + data['downvotes'] + ')');
+
+                        if(data['vote_value'] == 1) {   // Select upvote button
+
+                        } else if(data['vote_value'] == -1) {   // Select downvote button
+
+                        } else {    // deselect both buttons
+
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+
+    <!-- Show all comments -->
     <h2>Comments:</h2>
     @foreach ($article->comments()->get() as $comment)
         <p>
@@ -38,6 +95,7 @@
         <p>
             {{ $comment->body }}
 
+            <!-- delete comment if auth user -->
             @if (Auth::check() and $comment->user_id == Auth::user()->id)
                 <form method="POST" accept-charset="UTF-8" action="/articles/deletecomment/{{ $comment->id }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -52,8 +110,10 @@
 
         <hr>
     @endforeach
+    <!-- Show all comments end -->
 
 
+    <!-- post new comment by auth user -->
     @if (Auth::check())
         <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -62,5 +122,6 @@
             <button type="submit">Post</button>
         </form>
     @endif
+    <!-- post comment end -->
 
 @stop
