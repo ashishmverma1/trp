@@ -41,49 +41,20 @@
         Rating: {{ $article->upvotes - $article->downvotes }}
     </p>
     @if (Auth::check())
-            <button id="upvote-button" class="vote-button" data-vote-type="upvote">
+            <button id="upvote-button" class="vote-button" data-vote-type="upvote"
+                                                            data-action="/articles/{{ $article->id }}/vote"
+                                                            data-article="{{ $article->id }}"
+                                                            data-token="{{ csrf_token() }}">
                 Upvote ({{ $article->upvotes }})
             </button>
-            <button id="downvote-button" class="vote-button" data-vote-type="downvote">
+            <button id="downvote-button" class="vote-button" data-vote-type="downvote"
+                                                            data-action="/articles/{{ $article->id }}/vote"
+                                                            data-article="{{ $article->id }}"
+                                                            data-token="{{ csrf_token() }}">
                 Downvote ({{ $article->downvotes }})
             </button>
     @endif
     <!-- rating buttons end -->
-
-
-    <script>
-        jQuery( document ).ready( function() {
-            $('.vote-button').click(function(e){
-                e.preventDefault();
-
-                var $postData = {};
-                $postData._token = '{{ csrf_token() }}';
-                $postData.vote_value = ($(this).data('vote-type') == 'upvote') ? 1 : -1;
-                $postData.article_id = {{ $article->id }};
-
-                $.ajax({
-                    type: 'POST',
-                    url : '/articles/{{ $article->id }}/vote',
-                    data : $postData,
-                    cache: false,
-                    success : function(data){
-                        $('#rating-counter').html('Rating: ' + (data['upvotes'] - data['downvotes']));
-                        $('#upvote-button').html('Upvote (' + data['upvotes'] + ')');
-                        $('#downvote-button').html('Downvote (' + data['downvotes'] + ')');
-
-                        if(data['vote_value'] == 1) {   // Select upvote button
-
-                        } else if(data['vote_value'] == -1) {   // Select downvote button
-
-                        } else {    // deselect both buttons
-
-                        }
-                    }
-                });
-                return false;
-            });
-        });
-    </script>
 
 
     <!-- Show all comments -->
