@@ -9,6 +9,8 @@
     <!-- Show  article stuff -->
     <h1>{{ $article->title }}</h1>
 
+    <p>Posted by: <a href="/users/{{ $article->user->username }}">{{ $article->user->username }}</a></p>
+
     <p>{{ $article->body }}</p>
 
     <p>
@@ -61,7 +63,7 @@
     <h2>Comments:</h2>
     @foreach ($article->comments()->get() as $comment)
         <p>
-            <a href="#">{{ $comment->user->username }}</a> says:
+            <a href="/users/{{ $comment->user->username }}">{{ $comment->user->username }}</a> says:
         </p>
         <p>
             {{ $comment->body }}

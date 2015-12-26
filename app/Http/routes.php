@@ -23,6 +23,10 @@ Route::controllers([
 ]);
 
 // for articles
+Route::get('users', 'UserController@index');
+Route::get('users/{username}', 'UserController@show');
+
+// for articles
 Route:resource('articles', 'ArticlesController');
 
 // for comments
