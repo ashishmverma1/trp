@@ -22,9 +22,12 @@ Route::controllers([
     'password' => 'Auth\PasswordController'
 ]);
 
-// for articles
+// for users
 Route::get('users', 'UserController@index');
 Route::get('users/{username}', 'UserController@show');
+Route::get('users/{username}/resetpassword', 'UserController@edit');
+Route::patch('users/{username}/resetpassword', 'UserController@update');
+Route::delete('users/{username}', 'UserController@destroy');
 
 // for articles
 Route:resource('articles', 'ArticlesController');
