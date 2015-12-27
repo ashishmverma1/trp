@@ -27,14 +27,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        if (\Request::get('sortby') == '') {                      // Sort by latest
-            $articles = Article::latest()->get();
-            foreach ($articles as $article) {
-                $article->votes = $this->getUpvotes($article->id) - $this->getDownvotes($article->id);
-            }
-        }
-
-        else if (\Request::get('sortby') == 'mostviewed') {       // Sort by mostviewed
+        if (\Request::get('sortby') == 'mostviewed') {       // Sort by mostviewed
             $articles = Article::orderBy('view_count', 'DESC')->get();
             foreach ($articles as $article) {
                 $article->votes = $this->getUpvotes($article->id) - $this->getDownvotes($article->id);
@@ -49,6 +42,13 @@ class ArticlesController extends Controller
             $articles = $articles->sortByDesc(function($article){
                 return $article->votes;
             });
+        }
+
+        else {      // Sort by latest
+            $articles = Article::latest()->get();
+            foreach ($articles as $article) {
+                $article->votes = $this->getUpvotes($article->id) - $this->getDownvotes($article->id);
+            }
         }
 
         return view('articles.index', compact('articles'));

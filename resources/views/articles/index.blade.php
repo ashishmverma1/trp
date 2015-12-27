@@ -9,7 +9,7 @@
     <h1>Articles</h1>
 
     <!-- show sorting options -->
-    @if (\Request::get('sortby') == '')
+    @if (\Request::get('sortby') != 'toprated' and \Request::get('sortby') != 'mostviewed')
         Latest
     @else
         <a href="/articles">Latest</a>
