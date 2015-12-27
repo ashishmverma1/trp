@@ -38,6 +38,7 @@
     			<li><a href="/articles">Articles</a></li>
                 @if (Auth::check())
         			<li><a href="/articles/create">Write</a></li>
+        			<li><a href="/notifications">Notifications <span id="notif-indicator"></span></a></li>
         			<li><a href="/users/{{ Auth::user()->username }}">Profile</a></li>
         			<li><a href="/auth/logout">Logout</a></li>
                 @else

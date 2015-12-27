@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Comment;
+use App\Notification;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -28,8 +29,13 @@ class CommentsController extends Controller
     {
         $this->validate($input, ['body' => 'required']);
         $newComment = new Comment($input->all());
-        // return $newComment;
         Auth::user()->articles()->save($newComment);
+
+        // create a new notification for comment
+        Notification::newNotification($newComment->article()->get()->first()->user_id,
+                                        $newComment->article_id,
+                                        'comment');
+
         session()->flash('flash_message', 'Comment posted!');
 
         return redirect('articles/'.$newComment->article_id);

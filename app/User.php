@@ -55,4 +55,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Vote');
     }
 
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
+
 }

@@ -1,11 +1,45 @@
 jQuery( document ).ready( function() {
-    VoteButtonAjax();
+    notificationAjax();
+    voteButtonAjax();
 });
+
+
+/**************** AJAX for notification checking *******************/
+function notificationAjax() {
+    $.ajax({
+        type: 'GET',
+        url : '/notifications/check',
+        cache: false,
+        success : function(data) {
+            if(data > 0) {
+                $('#notif-indicator').html(data);
+            } else {
+                $('#notif-indicator').html('');
+            }
+        }
+    });
+
+    setInterval(function(){
+        $.ajax({
+            type: 'GET',
+            url : '/notifications/check',
+            cache: false,
+            success : function(data) {
+                if(data > 0) {
+                    $('#notif-indicator').html(data);
+                } else {
+                    $('#notif-indicator').html('');
+                }
+            }
+        });
+    }, 10000);
+}
+
 
 
 
 /***************** AJAX handler for vote buttons *******************/
-function VoteButtonAjax() {
+function voteButtonAjax() {
     $('.vote-button').click(function(e){
         e.preventDefault();
 

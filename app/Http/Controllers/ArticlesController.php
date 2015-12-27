@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Article;
 use App\Vote;
+use App\Notification;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -279,6 +280,11 @@ class ArticlesController extends Controller
         $responseData['vote_value'] = $response_vote_value;
         $responseData['upvotes'] = $this->getUpvotes($article_id);
         $responseData['downvotes'] = $this->getDownvotes($article_id);
+
+        // create a new notification for vote
+        Notification::newNotification(Article::find($article_id)->user_id,
+                                        $article_id,
+                                        'vote');
 
         return response($responseData);
     }

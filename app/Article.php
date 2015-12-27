@@ -28,4 +28,10 @@ class Article extends Model
     {
         return $this->hasMany('App\Vote');
     }
+
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
 }
