@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    // check authentication for create/edit pages using middleware
+    // check authentication for viewing user pages using middleware
     public function __construct()
     {
         $this->middleware('auth');
