@@ -16,18 +16,41 @@ class ArticlesController extends Controller
     // check authentication for create/edit pages using middleware
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
 
     /**
-     * Display all articles home page
+     * Display all articles home page, articles sorted by 'sortby' parameter
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $articles = Article::latest()->get();
+        if (\Request::get('sortby') == '') {                      // Sort by latest
+            $articles = Article::latest()->get();
+            foreach ($articles as $article) {
+                $article->votes = $this->getUpvotes($article->id) - $this->getDownvotes($article->id);
+            }
+        }
+
+        else if (\Request::get('sortby') == 'mostviewed') {       // Sort by mostviewed
+            $articles = Article::orderBy('view_count', 'DESC')->get();
+            foreach ($articles as $article) {
+                $article->votes = $this->getUpvotes($article->id) - $this->getDownvotes($article->id);
+            }
+        }
+
+        else if (\Request::get('sortby') == 'toprated') {       // Sort by toprated
+            $articles = Article::latest()->get();
+            foreach ($articles as $article) {
+                $article->votes = $this->getUpvotes($article->id) - $this->getDownvotes($article->id);
+            }
+            $articles = $articles->sortByDesc(function($article){
+                return $article->votes;
+            });
+        }
+
         return view('articles.index', compact('articles'));
     }
 
@@ -160,6 +183,20 @@ class ArticlesController extends Controller
 
         return redirect('articles');
     }
+
+
+    /**
+     * to handle search queries
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        $search = \Request::get('query');
+        $articles = Article::where('title', 'like', '%'.$search.'%')->latest()->get();
+        return view('articles.search', compact('articles'));
+    }
+
 
 
     /************ Vote Stuff ****************/

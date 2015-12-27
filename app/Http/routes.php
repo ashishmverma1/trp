@@ -29,6 +29,9 @@ Route::get('users/{username}/resetpassword', 'UserController@edit');
 Route::patch('users/{username}/resetpassword', 'UserController@update');
 Route::delete('users/{username}', 'UserController@destroy');
 
+// for search
+Route::get('articles/search', 'ArticlesController@search');
+
 // for articles
 Route:resource('articles', 'ArticlesController');
 
