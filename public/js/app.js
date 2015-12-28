@@ -5,7 +5,7 @@ jQuery( document ).ready( function() {
 
 
 /**************** AJAX for notification checking *******************/
-function notificationAjax() {
+function notifAjax() {
     $.ajax({
         type: 'GET',
         url : '/notifications/check',
@@ -18,23 +18,14 @@ function notificationAjax() {
             }
         }
     });
-
-    setInterval(function(){
-        $.ajax({
-            type: 'GET',
-            url : '/notifications/check',
-            cache: false,
-            success : function(data) {
-                if(data > 0) {
-                    $('#notif-indicator').html(data);
-                } else {
-                    $('#notif-indicator').html('');
-                }
-            }
-        });
-    }, 10000);
 }
 
+function notificationAjax() {
+    notifAjax();
+    setInterval(function(){
+        notifAjax();
+    }, 10000);
+}
 
 
 
