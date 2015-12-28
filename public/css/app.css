@@ -208,3 +208,15 @@ Article preview
 .article-preview-stats a:hover, .article-preview-stats a:active {
     text-decoration: none;
 }
+
+
+
+
+/******************
+    Search styling
+******************/
+.search-result {
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
