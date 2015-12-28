@@ -4,14 +4,18 @@
 <head>
 
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         TRP - @yield('title')
     </title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Titillium+Web:300'>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
     @yield('css')
 
 </head>
@@ -20,7 +24,7 @@
 
     <!-- Header navbar -->
 
-    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
     	<div class="navbar-header">
     		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -35,15 +39,28 @@
     	<div class="collapse navbar-collapse navbar-ex1-collapse">
 
     		<ul class="nav navbar-nav">
-    			<li><a href="/articles">Articles</a></li>
+    			<li>
+                    <a href="/articles"><i class="fa fa-newspaper-o"></i> Articles</a>
+                </li>
                 @if (Auth::check())
-        			<li><a href="/articles/create">Write</a></li>
-        			<li><a href="/notifications">Notifications <span id="notif-indicator"></span></a></li>
-        			<li><a href="/users/{{ Auth::user()->username }}">Profile</a></li>
-        			<li><a href="/auth/logout">Logout</a></li>
+        			<li>
+                        <a href="/articles/create"><i class="fa fa-pencil-square"></i> Write</a>
+                    </li>
+        			<li>
+                        <a href="/notifications"><i class="fa fa-bell"></i> Notifications <span id="notif-indicator"></span></a>
+                    </li>
+        			<li>
+                        <a href="/users/{{ Auth::user()->username }}"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+        			<li>
+                        <a href="/users"><i class="fa fa-users"></i> Authors</a>
+                    </li>
+        			<li>
+                        <a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a>
+                    </li>
                 @else
-                    <li><a href="/auth/login">Login</a></li>
-                    <li><a href="/auth/register">Register</a></li>
+                    <li><a href="/auth/login"><i class="fa fa-sign-in"></i> Login</a></li>
+                    <li><a href="/auth/register"><i class="fa fa-user-plus"></i> Register</a></li>
                 @endif
     		</ul>
 
@@ -52,7 +69,7 @@
             		<div class="input-group">
             			<input type="text" class="form-control" placeholder="Search Article" name="query" id="srch-term">
             			<div class="input-group-btn">
-            				<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            				<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
             			</div>
             		</div>
         		</form>
@@ -74,14 +91,18 @@
         @yield('content')
     </div>
 
-    <div class="footer">
-        <h2 style="text-align:center;">--Footer--</h2>
+    <!-- Footer -->
+    <div class="footer row">
+        <div class="col-md-12">
+            &copy; TRP 2016
+        </div>
     </div>
+    <!-- Footer ends -->
 
 
     <!-- Scripts -->
-    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
     @yield('js')
 

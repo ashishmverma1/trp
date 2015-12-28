@@ -1,6 +1,7 @@
 jQuery( document ).ready( function() {
     notificationAjax();
     voteButtonAjax();
+    setFooter();
 });
 
 
@@ -13,7 +14,9 @@ function notifAjax() {
         success : function(data) {
             if(data > 0) {
                 $('#notif-indicator').html(data);
+                $('#notif-indicator').show();
             } else {
+                $('#notif-indicator').hide();
                 $('#notif-indicator').html('');
             }
         }
@@ -60,4 +63,13 @@ function voteButtonAjax() {
         });
         return false;
     });
+}
+
+
+/*********************** Set footer position ******************/
+function setFooter() {
+    if($(document).height() <= $(window).height()) {
+        var footer = $('.footer').first();
+        footer.css('position', 'fixed');
+    }
 }

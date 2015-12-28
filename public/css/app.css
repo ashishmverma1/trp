@@ -1,0 +1,111 @@
+/*************** CSS for App inner pages *****************/
+
+body {
+    margin-top: 60px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/******************
+    Header Navbar
+******************/
+
+.navbar {
+    background: rgb(30, 144, 255);
+    border: none;
+    -webkit-box-shadow: 0px 0px 20px 0px rgb(30, 144, 255);
+    -moz-box-shadow: 0px 0px 20px 0px rgb(30, 144, 255);
+    box-shadow: 0px 0px 20px 0px rgb(30, 144, 255);
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    text-transform: uppercase;
+    transition: background 0.5s;
+    letter-spacing: 1px;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+    background: rgb(0, 114, 225);
+}
+
+.navbar-inverse .navbar-nav>li>a .fa {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.navbar-form input, .navbar-form input:focus {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    color: white;
+}
+
+.navbar-form button {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    margin-top: 1px;
+    color: rgb(200,200,200);
+    transition: color 0.5s;
+}
+
+.navbar-form button:hover, .navbar-form button:focus, .navbar-form button:active{
+    background: transparent !important;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    margin-top: 1px;
+    color: white;
+}
+
+.navbar-form input::-webkit-input-placeholder {
+   color: rgb(200,200,200);
+}
+
+.navbar-form input:-moz-placeholder { /* Firefox 18- */
+   color: rgb(200,200,200);
+}
+
+.navbar-form input::-moz-placeholder {  /* Firefox 19+ */
+   color: rgb(200,200,200);
+}
+
+.navbar-form input:-ms-input-placeholder {
+   color: rgb(200,200,200);
+}
+
+#notif-indicator {
+    background-color: rgb(220, 100, 100);
+    padding: 2px 5px 2px 5px;
+    border-radius: 4px;
+    display: none;
+}
+
+
+
+
+/******************
+    Footer
+******************/
+.footer {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    background: rgb(40, 40, 40);
+    bottom: 0;
+    margin-top: 50px;
+    width: 100%;
+}
