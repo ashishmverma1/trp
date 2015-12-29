@@ -57,7 +57,7 @@
     @foreach ($articles as $article)
 
         <div class="row">
-            <div class="article-preview-container col-sm-12 col-md-8 col-centered">
+            <div class="article-preview-container col-sm-10 col-md-8 col-centered">
                 <div class="row article-preview-title">
                     <a href="/articles/{{ $article->id }}">
                         <div class="col-sm-12">
@@ -90,14 +90,19 @@
                             <i class="fa fa-clock-o"></i> Posted on: {{ $article->created_at->toFormattedDateString() }}
                         </p>
                     </div>
-                    <div class="col-sm-12 col-md-3">
+                    <div class="col-sm-12 col-md-2">
                         <p>
                             <i class="fa fa-eye"></i> Views: {{ $article->view_count }}
                         </p>
                     </div>
-                    <div class="col-sm-12 col-md-3">
+                    <div class="col-sm-12 col-md-2">
                         <p>
                             <i class="fa fa-thumbs-up"></i> Rating: {{ $article->votes }} <br>
+                        </p>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <p>
+                            <i class="fa fa-comments"></i> Comments: {{ $article->comments()->count() }} <br>
                         </p>
                     </div>
                 </div>
