@@ -11,7 +11,7 @@
 
     <p>Posted by: <a href="/users/{{ $article->user->username }}">{{ $article->user->username }}</a></p>
 
-    <p>{{ $article->body }}</p>
+    <p>{!! nl2br(e($article->body)) !!} </p>
 
     <p>
         Published on: {{ $article->created_at->toFormattedDateString() }} ({{ $article->created_at->diffForHumans() }})
