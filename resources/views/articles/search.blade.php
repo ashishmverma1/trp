@@ -28,7 +28,7 @@
         <div class="col-sm-12">
             <h1 class="page-heading">Search for:</h1>
         </div>
-        <div class="col-sm-12 search-result">
+        <div class="col-sm-12 page-subheading">
             <p class="">'{{ \Request::get('query') }}'</p>
             <p>
                 @if ($articles->count() == 1)
