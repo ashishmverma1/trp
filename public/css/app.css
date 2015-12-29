@@ -166,7 +166,7 @@ Article preview
     margin: auto;
     margin-top: 50px;
     text-align: center;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,1);
     border-radius: 5px;
     padding: 10px;
     transition: all 0.5s;
@@ -219,4 +219,69 @@ Article preview
     font-size: 18px;
     color: white;
     text-align: center;
+}
+
+
+
+
+/*********************
+Notifications styling
+*********************/
+
+.notification-list-container {
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+.notification-list-container > .row:first-child .notification-container {
+    border-radius: 10px 10px 0 0;
+}
+
+.notification-list-container > .row:last-child .notification-container {
+    border-radius: 0 0 10px 10px;
+}
+
+.notification-container {
+    float: none;
+    margin: auto;
+    border: 1px solid rgba(80,80,80,0.2);
+    background-color: rgba(255,255,255,1);
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.notification-container:hover {
+    background-color: rgba(225,225,225,1);
+}
+
+.notification-unread {
+    background-color: rgba(255,235,235,1);
+}
+
+.notification-unread:hover {
+    background-color: rgba(245,225,225,1);
+}
+
+.notification-container a, .notification-container a:hover, .notification-container a:active {
+    text-decoration: none;
+    color: rgb(30,30,30);
+}
+
+.notification-stats {
+    font-size: 14px;
+    color: rgb(60,60,60);
+}
+
+.notification-stats .fa {
+    font-size: 8px;
+}
+
+.notification-read-indicator {
+    margin-right: 10px;
+}
+
+.notification-timestamp {
+    margin-left: 10px;
 }
