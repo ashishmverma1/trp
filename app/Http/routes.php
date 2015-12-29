@@ -45,4 +45,5 @@ Route::post('articles/{id}/vote', 'ArticlesController@storeUpvote');
 // for notifications
 Route::get('notifications', 'NotificationsController@index');
 Route::get('notifications/check', 'NotificationsController@check');
+Route::get('notifications/readall', 'NotificationsController@markAllAsRead');
 Route::get('notifications/{id}', 'NotificationsController@show');

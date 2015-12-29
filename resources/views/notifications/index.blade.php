@@ -37,6 +37,11 @@
                     unread notifications.
                 @endif
             </p>
+            @if ($notifications->where('read', 0)->count() > 0)
+                <p>
+                    <a href="/notifications/readall" class="btn btn-success">Mark all as read</a>
+                </p>
+            @endif
         </div>
     </div>
 
