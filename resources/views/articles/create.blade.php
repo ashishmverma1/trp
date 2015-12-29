@@ -26,7 +26,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="page-heading">New Post</h1>
+            <h1 class="page-heading">New Article</h1>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
                 <div class="form-group title-section">
                     <label for="title">Title</label>
                     <input class="form-control" type="text" name="title" value="{{ old('title') }}"
-                            placeholder="Title for your new post">
+                            placeholder="Title for your new article">
                 </div>
 
                 <div class="form-group body-section">
