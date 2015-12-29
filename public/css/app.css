@@ -287,3 +287,46 @@ Notifications styling
 .notification-timestamp {
     margin-left: 10px;
 }
+
+
+
+
+/***********************
+Create article styling
+***********************/
+.article-form {
+    float: none;
+    margin: auto;
+    margin-top: 20px;
+    font-family: 'Lato';
+}
+
+.article-form .title-section label, .article-form .body-section label {
+    color: white;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.article-form input, .article-form  textarea {
+    font-size: 16px;
+    font-family: 'Lato';
+    color: rgb(220,220,220);
+    background-color: rgba(0,0,0,0.5);
+}
+
+.article-form  textarea {
+    resize: vertical;
+}
+
+.article-form-errors {
+    float: none;
+    margin: auto;
+    margin-top: 20px;
+    font-family: 'Lato';
+    color: white;
+    font-size: 14px;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+}
