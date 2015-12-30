@@ -97,6 +97,24 @@ body {
 
 
 
+/************************
+Flash message modal-body
+************************/
+#flash-message-modal {
+    top:20%;
+}
+
+#flash-message-modal .modal-body {
+    padding: 10px;
+}
+
+#flash-message-modal .modal-content {
+    font-size: 16px;
+}
+
+
+
+
 /******************
     Footer
 ******************/

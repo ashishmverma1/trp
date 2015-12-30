@@ -79,13 +79,22 @@
     </div>
     <!-- header ends -->
 
-    <!-- show flash messages if any -->
+
     @if (Session::has('flash_message'))
-        <div>
-            {{ Session::get('flash_message') }}
+    <!-- show flash messages if any -->
+        <div class="modal fade" id="flash-message-modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <p>{{ Session::get('flash_message') }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
     <!-- flash messages end -->
+    @endif
+
 
     <div class="content">
         @yield('content')
@@ -105,6 +114,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
     @yield('js')
+
+    @if (Session::has('flash_message'))
+        <!-- flash  message modal script -->
+        <script>
+            $("#flash-message-modal").modal("show");
+            setTimeout(function(){
+                $("#flash-message-modal").modal("hide");
+            }, 3000);
+        </script>
+    @endif
 
 </body>
 
