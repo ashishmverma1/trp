@@ -330,3 +330,136 @@ Create article styling
     border-radius: 4px;
     padding: 10px;
 }
+
+
+
+
+/*************************
+Show article page styling
+*************************/
+.article-container, .comments-container {
+    float: none;
+    margin: auto;
+    margin-top: 50px;
+    color: white;
+}
+
+.article-posted-by a {
+    color: rgb(101,172,233);
+}
+
+.article-posted-by a:hover, .article-posted-by a:active {
+    text-decoration: none;
+}
+
+.article-container hr {
+    border: 1px solid rgb(50,50,50);
+}
+
+.article-title {
+    text-align: center;
+}
+
+.article-body {
+    margin-top: 50px;
+    font-size: 16px;
+    font-family: 'Lato';
+    text-align: justify;
+}
+
+.article-stats {
+    margin-top: 60px;
+    letter-spacing: 1px;
+}
+
+.article-stats-right {
+    text-align: right;
+}
+
+.vote-button {
+    transition: all 0.5s;
+    width:40%;
+    margin-left: 10px;
+}
+
+.vote-button:focus {
+    outline: none;
+}
+
+#upvote-button {
+    -webkit-box-shadow: 0px 0px 10px 2px rgb(68, 157, 68);
+    -moz-box-shadow: 0px 0px 10px 2px rgb(68, 157, 68);
+    box-shadow: 0px 0px 10px 2px rgb(68, 157, 68);
+}
+
+#downvote-button {
+    -webkit-box-shadow: 0px 0px 10px 2px rgb(201, 48, 44);
+    -moz-box-shadow: 0px 0px 10px 2px rgb(201, 48, 44);
+    box-shadow: 0px 0px 10px 2px rgb(201, 48, 44);
+}
+
+.vote-button-unselected {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.rating-ajax-spinner {
+    margin-right: 10px;
+    font-size: 16px;
+    display: none;
+}
+
+.comment hr {
+    border: 1px dotted  rgb(50,50,50);
+}
+
+.comment-heading {
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.comment-heading a {
+    color: rgb(101,172,233);
+}
+
+.comment-heading a:hover, .comment-heading a:active {
+    text-decoration: none;
+}
+
+.comment-bottom {
+    color: rgb(180,180,180);
+    font-size: 12px;
+}
+
+.comment-bottom button {
+    background: transparent;
+    border: 1px solid rgb(180,180,180);
+}
+
+.comment-bottom button:hover {
+    color: rgb(200,200,200);
+}
+
+.comment-input, .comment-button {
+    margin-top: 10px;
+}
+
+.comment-input input {
+    color: rgb(220,220,220);
+    background-color: rgba(0,0,0,0.5);
+}
+
+#article-delete-modal {
+    text-align: center;
+    top:20%;
+}
+
+#article-delete-modal .modal-body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#article-delete-modal .modal-content {
+    font-size: 16px;
+}

@@ -36,6 +36,7 @@ function notificationAjax() {
 function voteButtonAjax() {
     $('.vote-button').click(function(e){
         e.preventDefault();
+        $('.rating-ajax-spinner').show();
 
         var $postData = {};
         $postData._token = $(this).data('token');
@@ -48,17 +49,23 @@ function voteButtonAjax() {
             data : $postData,
             cache: false,
             success : function(data){
-                $('#rating-counter').html('Rating: ' + (data['upvotes'] - data['downvotes']));
-                $('#upvote-button').html('Upvote (' + data['upvotes'] + ')');
-                $('#downvote-button').html('Downvote (' + data['downvotes'] + ')');
+                $('#new-rating-value').html(data['upvotes'] - data['downvotes']);
+                $('#new-upvote-value').html(data['upvotes']);
+                $('#new-downvote-value').html(data['downvotes']);
 
                 if(data['vote_value'] == 1) {   // Select upvote button
+                    $('#upvote-button').removeClass('vote-button-unselected');
+                    $('#downvote-button').addClass('vote-button-unselected');
 
                 } else if(data['vote_value'] == -1) {   // Select downvote button
-
+                    $('#upvote-button').addClass('vote-button-unselected');
+                    $('#downvote-button').removeClass('vote-button-unselected');
                 } else {    // deselect both buttons
-
+                    $('#upvote-button').addClass('vote-button-unselected');
+                    $('#downvote-button').addClass('vote-button-unselected');
                 }
+
+                $('.rating-ajax-spinner').hide();
             }
         });
         return false;
