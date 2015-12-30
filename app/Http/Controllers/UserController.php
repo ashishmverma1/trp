@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('username')->get();
         foreach ($users as $user) {
             $user->numberOfArticles = $user->articles()->count();
         }
