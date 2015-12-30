@@ -277,11 +277,11 @@ Notifications styling
 }
 
 .notification-unread {
-    background-color: rgba(255,235,235,1);
+    background-color: rgb(200, 235, 200);
 }
 
 .notification-unread:hover {
-    background-color: rgba(245,225,225,1);
+    background-color: rgb(180, 215, 180);
 }
 
 .notification-container a, .notification-container a:hover, .notification-container a:active {
