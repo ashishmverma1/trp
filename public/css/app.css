@@ -481,3 +481,48 @@ Show article page styling
 #article-delete-modal .modal-content {
     font-size: 16px;
 }
+
+
+
+
+/********************
+Users list styling
+********************/
+.user-list-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.user-list-container a:hover, .user-list-container a:active {
+    text-decoration: none;
+}
+
+.user-preview-col {
+    float: none;
+    margin: auto;
+    display: inline-block;
+}
+
+.user-preview-container {
+    background-color: rgba(255,255,255,0.9);
+    margin: 20px;
+    padding: 20px;
+    padding-top: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.5s;
+}
+
+.user-preview-container:hover {
+    background-color: rgba(225,225,225,0.9);
+}
+
+.user-preview-stats p {
+    margin-top: 15px;
+    color: rgb(30,30,30);
+}
+
+.user-preview-title {
+    font-size: 20px;
+    border-bottom: 1px solid rgb(180,180,180);
+}
