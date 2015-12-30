@@ -10,7 +10,7 @@
     <style>
         body {
             background-position: center;
-            background-image: url(/img/bg_articles.jpg);
+            background-image: url(/img/bg_users.jpg);
             background-repeat:no-repeat;
             background-attachment: fixed;
             -webkit-background-size: cover;
