@@ -1,0 +1,53 @@
+/********************* Welcome Page Styling ********************/
+
+body {
+    background-position: center;
+    background-image: url(/img/bg_articles.jpg);
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    font-family: 'Lato';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.logo-container, .about-container, .get-started-container {
+    float: none;
+    margin: auto;
+    text-align: center;
+}
+
+.logo-container {
+    margin-top: 50px;
+}
+
+.about-container {
+    margin-top: 50px;
+    color: rgb(220,220,220);
+    font-size: 18px;
+}
+
+.get-started-container {
+    margin-top: 30px;
+    color: white;
+}
+
+.get-started-container h3 {
+    font-size: 36px;
+    margin: 20px;
+}
+
+.get-started-container .btn {
+    background-color: transparent;
+    border: 1px solid white;
+    transition: all 0.5s;
+}
+
+.get-started-container .btn:hover {
+    background-color: rgb(50,50,50);
+}
