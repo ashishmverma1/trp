@@ -526,3 +526,23 @@ Users list styling
     font-size: 20px;
     border-bottom: 1px solid rgb(180,180,180);
 }
+
+
+
+
+/********************
+User profile styling
+********************/
+#user-delete-modal {
+    text-align: center;
+    top:20%;
+}
+
+#user-delete-modal .modal-body {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#user-delete-modal .modal-content {
+    font-size: 16px;
+}
