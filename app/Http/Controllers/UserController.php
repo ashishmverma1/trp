@@ -46,6 +46,10 @@ class UserController extends Controller
         $user = User::where('username', $username)->get()->first();
         $user->articles = $user->articles()->get();
         $user->numberOfArticles = $user->articles->count();
+        foreach ($user->articles as $article) {
+            $article->votes = $article->votes()->where('vote_value', 1)->count()
+                                - $article->votes()->where('vote_value', -1)->count();
+        }
         return view('users.show', compact('user'));
     }
 
