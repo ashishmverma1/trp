@@ -24,35 +24,38 @@
 
 @section('content')
 
-    <!-- Article delete modal -->
-    <div class="modal fade" id="article-delete-modal" role="dialog">
-        <div class="modal-dialog">
+    @if (Auth::check() and $article->user_id == Auth::user()->id)
+        <!-- Article delete modal -->
+        <div class="modal fade" id="article-delete-modal" role="dialog">
+            <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <p>
-                        Are you sure you want to delete the article?
-                    </p>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>
+                            Are you sure you want to delete the article?
+                        </p>
 
-                    <div>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">
-                            <i class="fa fa-mail-reply"></i> Cancel
-                        </button>
-                        <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}"
-                            style="display:inline-block">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fa fa-close"></i> Delete
+                        <div>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">
+                                <i class="fa fa-mail-reply"></i> Cancel
                             </button>
-                        </form>
+                            <form method="POST" accept-charset="UTF-8" action="/articles/{{ $article->id }}"
+                                style="display:inline-block">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-close"></i> Delete
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
+    @endif
+    
 
     <div class="row">
         <div class="col-sm-10 col-md-8 article-container">
