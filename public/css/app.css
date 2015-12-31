@@ -546,3 +546,39 @@ User profile styling
 #user-delete-modal .modal-content {
     font-size: 16px;
 }
+
+
+
+
+/***********************
+Auth pages styling
+***********************/
+.auth-form {
+    float: none;
+    margin: auto;
+    margin-top: 50px;
+    color: white;
+}
+
+.auth-form input, .auth-form  textarea {
+    font-size: 16px;
+    color: rgb(220,220,220);
+    background-color: rgba(0,0,0,0.5);
+}
+
+.auth-form  textarea {
+    resize: vertical;
+}
+
+.auth-form-errors {
+    float: none;
+    margin: auto;
+    margin-top: 20px;
+    font-family: 'Lato';
+    color: white;
+    font-size: 14px;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+}
