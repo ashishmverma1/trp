@@ -94,6 +94,11 @@ body {
     display: none;
 }
 
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border: none;
+    text-align: center;
+}
+
 
 
 
