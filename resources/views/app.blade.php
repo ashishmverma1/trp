@@ -33,7 +33,9 @@
     		<span class="icon-bar"></span>
     		<span class="icon-bar"></span>
     		</button>
-    		<a class="navbar-brand" rel="home" href="/" title="TRP">TRP</a>
+            <a class="navbar-brand" rel="home" href="/" title="TRP">
+                <img src="/img/logo_nav.png" alt="Logo" height="40" width="80">
+            </a>
     	</div>
 
     	<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -123,7 +125,7 @@
                 notificationAjax();
                 voteButtonAjax();
             @endif
-            
+
             setFooter();
         });
     </script>
