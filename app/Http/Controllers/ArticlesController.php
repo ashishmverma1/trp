@@ -112,7 +112,6 @@ class ArticlesController extends Controller
         $newArticle = new Article($input->all());
 
         Auth::user()->articles()->save($newArticle);
-        session()->flash('flash_message', 'Article created successfully!');
 
         return redirect('articles/'.$newArticle->id);
     }
@@ -156,7 +155,6 @@ class ArticlesController extends Controller
         }
 
         $article->update($input->all());
-        session()->flash('flash_message', 'Article updated successfully!');
 
         return redirect('articles/'.$articleID);
     }
@@ -180,7 +178,7 @@ class ArticlesController extends Controller
         }
 
         $article->delete();
-        session()->flash('flash_message', 'Article deleted successfully!');
+        session()->flash('flash_message', 'Article deleted!');
 
         return redirect('articles');
     }

@@ -36,8 +36,6 @@ class CommentsController extends Controller
                                         $newComment->article_id,
                                         'comment');
 
-        session()->flash('flash_message', 'Comment posted!');
-
         return redirect('articles/'.$newComment->article_id);
     }
 
