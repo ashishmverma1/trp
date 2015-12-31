@@ -570,6 +570,13 @@ Auth pages styling
     resize: vertical;
 }
 
+.auth-form label {
+    text-align: center;
+    font-weight: normal;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .auth-form-errors {
     float: none;
     margin: auto;
