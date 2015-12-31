@@ -115,6 +115,20 @@
     <script src="/js/app.js"></script>
     @yield('js')
 
+    <!-- Page ready/onload scrits -->
+    <script>
+        jQuery( document ).ready( function() {
+            @if (Auth::check())
+                // load only if authenticated
+                notificationAjax();
+                voteButtonAjax();
+            @endif
+            
+            setFooter();
+        });
+    </script>
+    <!-- Page ready/onload scrits end -->
+
     @if (Session::has('flash_message'))
         <!-- flash  message modal script -->
         <script>

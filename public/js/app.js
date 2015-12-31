@@ -1,10 +1,3 @@
-jQuery( document ).ready( function() {
-    notificationAjax();
-    voteButtonAjax();
-    setFooter();
-});
-
-
 /**************** AJAX for notification checking *******************/
 function notifAjax() {
     $.ajax({
