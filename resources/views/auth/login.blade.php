@@ -64,7 +64,7 @@
                 </div>
 
                 <button class="btn btn-primary btn-lg btn-block" type="submit">
-                    <i class="fa fa-login"></i> Login
+                    <i class="fa fa-sign-in"></i> Login
                 </button>
             </form>
         </div>
